@@ -2,13 +2,58 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jOp-gK-eB6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="8Xb-EJ-osZ">
             <objects>
                 <tableViewController id="MnE-bY-vhi" customClass="ViewController" customModule="TiqavViewer" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="4AP-H6-cIU"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="22" sectionFooterHeight="22" id="AfF-17-sM5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageCell" rowHeight="121" id="cz5-nW-reT" customClass="ImageCell" customModule="TiqavViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cz5-nW-reT" id="psS-nh-cTM">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dnN-q9-7tQ">
+                                            <rect key="frame" x="8" y="8" width="304" height="104"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dnN-q9-7tQ" firstAttribute="bottom" secondItem="psS-nh-cTM" secondAttribute="bottomMargin" id="aA0-la-mks"/>
+                                        <constraint firstItem="dnN-q9-7tQ" firstAttribute="trailing" secondItem="psS-nh-cTM" secondAttribute="trailingMargin" id="af8-9c-5p3"/>
+                                        <constraint firstItem="dnN-q9-7tQ" firstAttribute="top" secondItem="psS-nh-cTM" secondAttribute="topMargin" id="pgN-jt-vZL"/>
+                                        <constraint firstItem="dnN-q9-7tQ" firstAttribute="leading" secondItem="psS-nh-cTM" secondAttribute="leadingMargin" id="wxk-AT-AkN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="tiqavImage" destination="dnN-q9-7tQ" id="O7I-Tz-IKW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MnE-bY-vhi" id="PIu-Zg-rY9"/>
+                            <outlet property="delegate" destination="MnE-bY-vhi" id="4AU-lU-Pm3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="4AP-H6-cIU">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="O1J-5g-eKz">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="STs-h1-tAd">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Reload"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="reloadButton" destination="STs-h1-tAd" id="c0O-ha-mQn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YX4-vp-PAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

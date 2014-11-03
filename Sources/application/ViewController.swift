@@ -14,26 +14,50 @@ struct ImageViewScope {
 }
 
 class ViewController: UITableViewController {
+
+    @IBOutlet private weak var reloadButton: UIButton!
     
     var searchPromis: Promise<[Image]>?
     var scope: ImageViewScope = ImageViewScope() {
         didSet {
             tableView.reloadData()
+            refreshControl?.endRefreshing()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl = UIRefreshControl()
+
+        initDocument()
+        loadHandler()
         randomLoad()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
+    // MARK: Document
+    
+    private func initDocument() {
+        self.title = "TiqavViewer"
+    }
+    
+    // MARK: Handler
+    
+    func loadHandler() {
+        refreshControl?.addTarget(self, action: "onReload", forControlEvents: .ValueChanged)
+        reloadButton.addTarget(self, action: "onReload", forControlEvents: .TouchUpInside)
+    }
+    
+    func onReload() {
+        randomLoad()
+    }
     
     // MARK: Load
     
-    func randomLoad() {
+    private func randomLoad() {
         let service = ImageService()
         
         searchPromis = service.random().when({ (images: [Image]) in
@@ -60,14 +84,22 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 120
+        return ImageCell.defaultHeight()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
-        cell.imageView.sd_setImageWithURL(NSURL(string: scope.images[row].url))
+        let cellId = "imageCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as ImageCell
+        cell.configure(scope.images[indexPath.row])
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let text = scope.images[indexPath.row].url
+        
+        let alert = UIAlertController(title: "taped", message: text, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "close", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
