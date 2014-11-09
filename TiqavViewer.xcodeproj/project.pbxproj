@@ -148,6 +148,7 @@
 				<string>4D1937B51A06280800A78CD2</string>
 				<string>4D19377F1A061A8700A78CD2</string>
 				<string>4DFE8CCB1A0750BD006D6868</string>
+				<string>4D8C80861A0F79060089CE9C</string>
 				<string>4D1937B01A061FC800A78CD2</string>
 				<string>4DF71CF21A06900A00744BC3</string>
 			</array>
@@ -811,6 +812,7 @@
 		<dict>
 			<key>children</key>
 			<array>
+				<string>4D8C80821A0F78E20089CE9C</string>
 				<string>4D1937AD1A061EA800A78CD2</string>
 				<string>4D1937821A061A8700A78CD2</string>
 			</array>
@@ -1213,6 +1215,41 @@
 			<string>TiqavViewer-Bridging-Header.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4D8C80821A0F78E20089CE9C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>4D8C80851A0F79060089CE9C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>common</string>
+			<key>path</key>
+			<string>common</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4D8C80851A0F79060089CE9C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>TiqavColor.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4D8C80861A0F79060089CE9C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4D8C80851A0F79060089CE9C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>4DF71CF11A06900A00744BC3</key>
 		<dict>

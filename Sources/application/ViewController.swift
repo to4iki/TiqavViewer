@@ -29,8 +29,9 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         self.refreshControl = UIRefreshControl()
 
+        initLaoyout()
         initDocument()
-        loadHandler()
+        addHandlers()
         randomLoad()
     }
     
@@ -44,14 +45,21 @@ class ViewController: UITableViewController {
         self.title = "TiqavViewer"
     }
     
-    // MARK: Handler
-    
-    func loadHandler() {
-        refreshControl?.addTarget(self, action: "onReload", forControlEvents: .ValueChanged)
-        reloadButton.addTarget(self, action: "onReload", forControlEvents: .TouchUpInside)
+    private func initLaoyout() {
+        self.navigationController?.navigationBar.barTintColor = TiqavColor.main.toColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
     
-    func onReload() {
+    // MARK: Handler
+    
+    func addHandlers() {
+        refreshControl?.addTarget(self, action: "execReload", forControlEvents: .ValueChanged)
+        reloadButton.addTarget(self, action: "execReload", forControlEvents: .TouchUpInside)
+    }
+    
+    func execReload() {
         randomLoad()
     }
     

@@ -17,6 +17,9 @@ class ImageCell: UITableViewCell {
     }
     
     func configure(image: Image) {
-        self.tiqavImage.sd_setImageWithURL(NSURL(string: image.url))
+        tiqavImage.layer.borderColor = UIColor.blackColor().CGColor
+        tiqavImage.layer.borderWidth = 2.0
+        
+        tiqavImage.sd_setImageWithURL(NSURL(string: image.url))
     }
 }
