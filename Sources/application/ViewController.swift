@@ -13,7 +13,7 @@ struct ImageViewScope {
     var images: [Image] = []
 }
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, NJKScrollFullscreenDelegate {
 
     @IBOutlet private weak var reloadButton: UIButton!
     
@@ -28,7 +28,11 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl = UIRefreshControl()
-
+        
+        var scrollProxy = NJKScrollFullScreen(forwardTarget: self.tableView)
+        tableView.delegate = scrollProxy as? UITableViewDelegate
+        scrollProxy.delegate = self
+        
         initLaoyout()
         initDocument()
         addHandlers()
@@ -109,5 +113,23 @@ class ViewController: UITableViewController {
         let alert = UIAlertController(title: "taped", message: text, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "close", style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: NJKScrollFullScreen
+
+    func scrollFullScreen(fullScreenProxy: NJKScrollFullScreen!, scrollViewDidScrollUp deltaY: CGFloat) {
+        self.moveNavigationBar(deltaY, animated: true)
+    }
+    
+    func scrollFullScreen(fullScreenProxy: NJKScrollFullScreen!, scrollViewDidScrollDown deltaY: CGFloat) {
+        self.moveNavigationBar(deltaY, animated: true)
+    }
+    
+    func scrollFullScreenScrollViewDidEndDraggingScrollUp(fullScreenProxy: NJKScrollFullScreen!) {
+        self.hideNavigationBar(true)
+    }
+    
+    func scrollFullScreenScrollViewDidEndDraggingScrollDown(fullScreenProxy: NJKScrollFullScreen!) {
+        self.showNavigationBar(true)
     }
 }

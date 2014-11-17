@@ -4,3 +4,5 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SDWebImagePrefetcher.h"
+#import "NJKScrollFullScreen.h"
+#import "UIViewController+NJKFullScreenSupport.h"
