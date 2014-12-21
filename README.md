@@ -5,6 +5,6 @@ TiqavViewer
 ### Libraies
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [FranticApparatus](https://github.com/jkolb/FranticApparatus)
-- [NJKScrollFullScreen](https://github.com/ninjinkun/NJKScrollFullScreen)
+- [AMScrollingNavbar](https://github.com/andreamazz/AMScrollingNavbar)
 - [SDWebImage](https://github.com/rs/SDWebImage)
 - [swift-json](https://github.com/dankogai/swift-json/)

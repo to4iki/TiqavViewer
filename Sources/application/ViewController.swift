@@ -13,7 +13,7 @@ struct ImageViewScope {
     var images: [Image] = []
 }
 
-class ViewController: UITableViewController, NJKScrollFullscreenDelegate {
+class ViewController: UITableViewController {
 
     @IBOutlet private weak var reloadButton: UIButton!
     
@@ -27,14 +27,15 @@ class ViewController: UITableViewController, NJKScrollFullscreenDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // AMScrollingNavbar
+        self.navigationController?.navigationBar.translucent = false
+        self.followScrollView(self.tableView, withDelay: 6.0)
+        
         self.refreshControl = UIRefreshControl()
         
-        var scrollProxy = NJKScrollFullScreen(forwardTarget: self.tableView)
-        tableView.delegate = scrollProxy as? UITableViewDelegate
-        scrollProxy.delegate = self
-        
-        initLaoyout()
-        initDocument()
+        setupLaoyout()
+        setupDocument()
         addHandlers()
         randomLoad()
     }
@@ -45,11 +46,11 @@ class ViewController: UITableViewController, NJKScrollFullscreenDelegate {
 
     // MARK: Document
     
-    private func initDocument() {
+    private func setupDocument() {
         self.title = "TiqavViewer"
     }
     
-    private func initLaoyout() {
+    private func setupLaoyout() {
         self.navigationController?.navigationBar.barTintColor = TiqavColor.main.toColor()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.titleTextAttributes =
@@ -113,23 +114,5 @@ class ViewController: UITableViewController, NJKScrollFullscreenDelegate {
         let alert = UIAlertController(title: "taped", message: text, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "close", style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    // MARK: NJKScrollFullScreen
-
-    func scrollFullScreen(fullScreenProxy: NJKScrollFullScreen!, scrollViewDidScrollUp deltaY: CGFloat) {
-        self.moveNavigationBar(deltaY, animated: true)
-    }
-    
-    func scrollFullScreen(fullScreenProxy: NJKScrollFullScreen!, scrollViewDidScrollDown deltaY: CGFloat) {
-        self.moveNavigationBar(deltaY, animated: true)
-    }
-    
-    func scrollFullScreenScrollViewDidEndDraggingScrollUp(fullScreenProxy: NJKScrollFullScreen!) {
-        self.hideNavigationBar(true)
-    }
-    
-    func scrollFullScreenScrollViewDidEndDraggingScrollDown(fullScreenProxy: NJKScrollFullScreen!) {
-        self.showNavigationBar(true)
     }
 }

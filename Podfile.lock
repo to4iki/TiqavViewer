@@ -1,15 +1,15 @@
 PODS:
-  - NJKScrollFullScreen (0.2.5)
+  - AMScrollingNavbar (1.1.7)
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
 
 DEPENDENCIES:
-  - NJKScrollFullScreen
+  - AMScrollingNavbar
   - SDWebImage
 
 SPEC CHECKSUMS:
-  NJKScrollFullScreen: 9b0b98f04bcd4efd0ed121bffac4070cdfb2f010
+  AMScrollingNavbar: 202ce12530cd5d0074718ba5d515f84c74024c3c
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0
